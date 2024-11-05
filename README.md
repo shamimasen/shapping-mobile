@@ -1,6 +1,12 @@
 # Shapping
 
+**Nama : Shalya Naura Lionita**
+**NPM : 2306245535**
+**Kelas : B**
+
 **Tugas Pemrograman Berbasis Platform - PBP B**
+
+>**Shapping :** merupakan proyek Flutter sederhana baru berbasis mobile untuk memenuhi Tugas Individu mata kuliah PBP Gasal 2024/2025
 
 ## **Penjelasan Tugas**
 
