@@ -753,16 +753,16 @@ Data yang diterima diubah menjadi widget untuk ditampilkan. Flutter sering mengg
 
 * ### Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
 
-**1. Register**
+**1. Register :**  
 Pengguna memulai proses registrasi dengan memasukkan data seperti nama, email, dan password melalui form di aplikasi Flutter. Data tersebut dikirim ke backend Django menggunakan HTTP POST dalam format JSON. Setelah menerima data, Django melakukan validasi untuk memastikan format data benar dan email belum terdaftar sebelumnya. Password pengguna di-hash menggunakan algoritma keamanan seperti PBKDF2 untuk memastikan kerahasiaan data. Akhirnya, Django menyimpan akun pengguna ke dalam database dan mengembalikan respons keberhasilan ke Flutter untuk mengonfirmasi bahwa proses registrasi selesai.
 
-**2. Login**
+**2. Login :**  
 Pada proses login, pengguna memasukkan email dan password mereka melalui form login di Flutter. Data ini kemudian dikirimkan ke Django menggunakan HTTP POST. Django memverifikasi email dan mencocokkan password dengan yang telah di-hash di database. Jika validasi berhasil, Django membuat sesi dengan cookie atau memberikan token autentikasi seperti JWT. Flutter menerima cookie atau token tersebut sebagai bukti autentikasi dan menyimpannya di penyimpanan lokal untuk digunakan pada permintaan selanjutnya. Jika login gagal, Django mengembalikan respons error dengan pesan yang sesuai.
 
-**3. Tampilan menu pada Flutter**
+**3. Tampilan menu pada Flutter :**  
 Setelah login berhasil, Flutter menggunakan token atau sesi yang diterima untuk mengakses data dari server Django. Setiap permintaan HTTP berikutnya menyertakan token atau cookie tersebut untuk memastikan Django dapat memverifikasi pengguna. Django memeriksa validitas token atau sesi sebelum memberikan akses ke data atau menu yang diminta. Setelah verifikasi berhasil, Django mengirimkan data yang relevan, seperti daftar menu, yang kemudian ditampilkan oleh Flutter di antarmuka pengguna.
 
-**4. Logout**
+**4. Logout :**  
 Proses logout dimulai ketika pengguna memilih opsi logout di aplikasi Flutter. Flutter mengirimkan permintaan ke Django untuk menghapus sesi atau mencabut token autentikasi. Django memproses permintaan ini dengan menghapus sesi dari database atau memasukkan token ke daftar hitam (blacklist). Setelah Django mengonfirmasi bahwa sesi atau token telah dihentikan, Flutter menghapus informasi autentikasi dari penyimpanan lokal dan mengarahkan pengguna kembali ke halaman login. Proses ini memastikan bahwa pengguna tidak lagi memiliki akses ke data atau fitur yang memerlukan autentikasi.
 
 
