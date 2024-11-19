@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shapping/models/product_entry.dart';
+import 'package:shapping/screens/product_detail.dart';
 import 'package:shapping/widgets/left_drawer.dart';
 
 class ProductEntryPage extends StatefulWidget {
@@ -54,32 +55,45 @@ class _ProductEntryPageState extends State<ProductEntryPage> {
               );
             } else {
               return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${snapshot.data![index].fields.productName}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (_, index) => Card(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      child: InkWell(
+                        splashColor: Colors.blue.withAlpha(30),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductDetailPage(
+                                      snapshot.data![index])));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${snapshot.data![index].fields.productName}",
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text("${snapshot.data![index].fields.price}"),
+                              const SizedBox(height: 10),
+                              Text("${snapshot.data![index].fields.rating}"),
+                              const SizedBox(height: 10),
+                              Text(
+                                  "${snapshot.data![index].fields.description}")
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.price}"),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.rating}"),
-                      const SizedBox(height: 10),
-                      Text("${snapshot.data![index].fields.description}")
-                    ],
-                  ),
-                ),
-              );
+                      )));
             }
           }
         },
